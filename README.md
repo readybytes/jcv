@@ -13,6 +13,9 @@ This is an AJAXIFIED plugin which helps you to verify your email configurations.
 
 Get the plugin and share your thoughts and words with me.
 
+# Documentation
+1. Get complete documentation link here :- http://www.jpayplans.com/labs/jemail-config-verifier.html
+2. Get release blog link here :- http://www.jpayplans.com/blog/item/joomla-email-configuration-verifier.html
 
-Thank You,
-Puneet Singhal
+
+### --Puneet Singhal
