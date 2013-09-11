@@ -2,7 +2,7 @@
 <extension version="2.5" type="plugin" group="system" method="upgrade">
 
     <name>JEmail Config Verifier (JCV)</name>
-    <version>3.0.1</version>
+    <version>3.0.2</version>
     <creationDate>July 2013</creationDate>
     <author>Team Ready Bytes</author>
     <authorEmail>puneetsinghal@readybytes.in</authorEmail>
