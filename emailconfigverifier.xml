@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
 
-    <name>JEmail Config Verifier (JCV)</name>
+    <name>JEmail Config Verifier</name>
     <version>3.0.2</version>
     <creationDate>July 2013</creationDate>
     <author>Team Ready Bytes</author>
