@@ -22,7 +22,7 @@ if(!defined('DS')){
  * @package	Test Email
  * @subpackage	Plugin
  * @author 	puneetsinghal@readybytes.in
- * 
+ *
  */
 class  plgSystemEmailconfigverifier extends JPlugin
 {
@@ -40,12 +40,12 @@ class  plgSystemEmailconfigverifier extends JPlugin
 	{
 		parent::__construct($subject, $config);
 		$this->_app = JFactory::getApplication();
-		
+
 		if(JVERSION < 3.0){
 			$this->loadLanguage();
 		}
 	}
-	
+
 	function onAfterRender()
 	{
 		$option = JRequest::getVar('option');
@@ -54,7 +54,7 @@ class  plgSystemEmailconfigverifier extends JPlugin
 		}
 		// Only render for HTML output
 		if (JFactory::getDocument()->getType() !== 'html' ) { return; }
-		
+
 		if(JVERSION < 3.0){
 			$html = $this->_getJ25Html();
 		}
@@ -64,40 +64,42 @@ class  plgSystemEmailconfigverifier extends JPlugin
 		$body = JResponse::getBody();
 		$body = str_replace('</body>', $html.'</body>', $body);
 		JResponse::setBody($body);
-		
+
 		return true;
 	}
-	
+
 	function onAfterRoute()
 	{
 		$input = $this->_app->input;
 		$option = $input->get('option', false);
 		$is_testemail = $input->get('plg_testemail', false);
-		
+
 		if($option != 'com_config' || !$is_testemail){
 			return true;
 		}
-		
+
 		$from 	= $input->get('from_email', false, 'string');
 		$sender = $input->get('from_name', false);
 		$date 	= JDate::getInstance()->toSql();
-		
+
 		$subject = JText::_('PLG_SYSTEM_TESTEMAIL_EMAIL_SUBJECT');
 		$body 	 = JText::sprintf('PLG_SYSTEM_TESTEMAIL_EMAIL_BODY', $date);
 		$result	 = array();
 		$message = JText::_('PLG_SYSTEM_TESTEMAIL_MESSAGE_SUCCESS');
 		$state	 = 'message';
-		
+
 		$mailer = self::createMailer();
-		
-		if ($mailer->sendMail($from, $sender, $from, $subject, $body) !== true)
+
+		$recipient = $this->params->get('mailto', $from);
+
+		if ($mailer->sendMail($from, $sender, $recipient, $subject, $body) !== true)
 		{
 			$this->_error();
 		}
-		
+
 		$this->_success();
 	}
-	
+
 	protected static function createMailer()
 	{
 		$input = JFactory::getApplication()->input;
@@ -136,17 +138,17 @@ class  plgSystemEmailconfigverifier extends JPlugin
 
 		return $mail;
 	}
-	
+
 	protected function _error()
 	{
 		$result['status'] = 'error';
 		$result['message']= JText::_('PLG_SYSTEM_TESTEMAIL_MESSAGE_ERROR');
 		$result = json_encode($result);
-		
+
 		echo $result;
 		exit();
 	}
-	
+
 	protected function _success()
 	{
 		$result['status'] = 'success';
@@ -156,12 +158,12 @@ class  plgSystemEmailconfigverifier extends JPlugin
 		echo $result;
 		exit();
 	}
-	
+
 	private function _getJ25Html()
 	{
 		ob_start();
 		?>
-		
+
 		<style type="text/css">
 			.btn {
 			  display: inline-block;
@@ -182,12 +184,12 @@ class  plgSystemEmailconfigverifier extends JPlugin
 			       -o-user-select: none;
 			          user-select: none;
 			}
-			
+
 			.pull-right{
 				float: right;
 			}
 		</style>
-		
+
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 		<script type="text/javascript">
 			(function($){
@@ -201,19 +203,19 @@ class  plgSystemEmailconfigverifier extends JPlugin
 					html = html + "<a href=\"http:\/\/www.jpayplans.com\" target=\"_blank\">Ready Bytes</a>"
 					html = html + "</span>";
 					html = html + "</span>";
-					
+
 					$("#jform_mailer-lbl").parent().append(html);
 				});
 			})(jQuery);
 		</script>
-		
-		<?php 
+
+		<?php
 		$html = ob_get_contents();
 		ob_end_clean();
 		$html .= $this->_getTestEmailScript();
 		return $html;
 	}
-	
+
 	private function _getJ30Html()
 	{
 		ob_start();
@@ -230,20 +232,20 @@ class  plgSystemEmailconfigverifier extends JPlugin
 						html = html + "<a href=\"http:\/\/www.jpayplans.com\" target=\"_blank\">Ready Bytes</a>"
 						html = html + "</span>";
 						html = html + "</span>";
-						
+
 					$("#jform_mailer-lbl").closest('fieldset').find('legend').append(html);
 					$("#content").prepend("<div id=\"jxi_email_msg\">&nbsp;</div>");
 				});
 			})(jQuery);
 		</script>
-		
-		<?php 
+
+		<?php
 		$html = ob_get_contents();
 		ob_end_clean();
 		$html .= $this->_getTestEmailScript();
 		return $html;
 	}
-	
+
 	private function _getTestEmailScript()
 	{
 		$root = JURI::root();
@@ -262,7 +264,7 @@ class  plgSystemEmailconfigverifier extends JPlugin
 						var url = "<?php echo $root;?>";
 						url = url + 'administrator/index.php?option=com_config&';
 						url = url + 'plg_testemail=1';
-						
+
 						var from_email	= $("#jform_mailfrom").val();
 						var mailer		= $('#jform_mailer :selected').val();
 						var from_name	= $('#jform_fromname').val();
@@ -272,8 +274,8 @@ class  plgSystemEmailconfigverifier extends JPlugin
 						var smtp_user	= $('#jform_smtpuser').val();
 						var smtp_pass	= $('#jform_smtppass').val();
 						var smtp_host	= $('#jform_smtphost').val();
-						
-						$.post(url, 
+
+						$.post(url,
 								{
 									from_email 	: from_email,
 									mailer		: mailer,
@@ -293,30 +295,30 @@ class  plgSystemEmailconfigverifier extends JPlugin
 							if(record.status == 'success'){
 								$('#jxi_email_msg').removeClass("alert alert-error");
 								$('#jxi_email_msg').addClass("alert alert-success");
-								var message = record.message; 
+								var message = record.message;
 								$('#jxi_email_msg').html(message);
 							}
 
 							if(record.status == 'error'){
 								$('#jxi_email_msg').removeClass("alert alert-success");
 								$('#jxi_email_msg').addClass("alert alert-error");
-								var message = record.message; 
+								var message = record.message;
 								$('#jxi_email_msg').html(message);
 							}
 
 							alert(message);
-							
+
 						});
 					});
 				});
 			})(jQuery);
 		</script>
-		
-		<?php 
+
+		<?php
 		$html = ob_get_contents();
 		ob_end_clean();
 		return $html;
 	}
-	
+
 }
 
