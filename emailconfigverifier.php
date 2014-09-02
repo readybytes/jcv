@@ -196,7 +196,7 @@ class  plgSystemEmailconfigverifier extends JPlugin
 				$(document).ready(function(){
 					var html = "<span class=\"pull-right center\" style=\"line-height:10px;\">";
 					html = html + "<button class=\"btn\" type=\"button\" id=jxi_test_email>";
-					html = html + "<i class=\"icon-wrench\"></i>&nbsp;Test Email";
+					html = html + "<i class=\"icon-wrench\"></i>&nbsp;<?php echo JText::_('PLG_SYSTEM_TESTEMAIL_EMAIL_TEXT_BUTTON') ?>";
 					html = html + "</button><br/>";
 					html = html + "<span style=\"font-size:9px; \">";
 					html = html + "PoweredBy ";
@@ -225,7 +225,7 @@ class  plgSystemEmailconfigverifier extends JPlugin
 				$(document).ready(function(){
 					var html = "<span class=\"pull-right center\" style=\"line-height:1px;\">";
 						html = html + "<button class=\"btn\" type=\"button\" id=jxi_test_email>";
-						html = html + "<i class=\"icon-wrench\"></i>&nbsp;Test Email";
+						html = html + "<i class=\"icon-wrench\"></i>&nbsp;<?php echo JText::_('PLG_SYSTEM_TESTEMAIL_EMAIL_TEXT_BUTTON') ?>";
 						html = html + "</button><br/>";
 						html = html + "<span style=\"font-size:9px; \">";
 						html = html + "PoweredBy ";
@@ -321,4 +321,3 @@ class  plgSystemEmailconfigverifier extends JPlugin
 	}
 
 }
-

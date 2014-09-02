@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
-
     <name>JEmail Config Verifier</name>
     <version>3.0.2</version>
     <creationDate>July 2013</creationDate>
@@ -9,12 +8,7 @@
     <authorUrl>http://www.jpayplans.com</authorUrl>
     <copyright>2009-13 Ready Bytes Software Labs Pvt. Ltd.</copyright>
     <license>GNU General Public License v2</license>
-    <description>Test and verify your email configuration settings. Follow these steps to use this plugin :- &lt;br /&gt;
-    			1) Go to Global Configuration.&lt;br /&gt;
-    			2) Now, select Server tab. Here you will get  &lt;strong&gt; Test Email &lt;/strong&gt; button.  &lt;br /&gt;
-    			3) Set email configuration and click on Test Email button. &lt;br /&gt;
-    			4) IMP: You do not need to save global configuration again and again. Just set the values and click on button. It will test your settings with-in few seconds.&lt;br /&gt;
-	</description>
+    <description>PLG_SYSTEM_TESTEMAIL_DESCRIPTION</description>
 	<files>
 		<filename plugin="emailconfigverifier">emailconfigverifier.php</filename>
 	</files>
@@ -22,6 +16,8 @@
 	<languages>
 		<language tag="en-GB">languages/en-GB.plg_system_emailconfigverifier.ini</language>
 		<language tag="en-GB">languages/en-GB.plg_system_emailconfigverifier.sys.ini</language>
+        <language tag="pt-BR">languages/pt-BR.plg_system_emailconfigverifier.ini</language>
+        <language tag="pt-BR">languages/pt-BR.plg_system_emailconfigverifier.sys.ini</language>
 	</languages>
 
 	<config>
